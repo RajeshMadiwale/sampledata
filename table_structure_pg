@@ -1,0 +1,11 @@
+create table articles(sno bigint primary key,code varchar(10), article_code varchar(40), department_code varchar(5));
+
+Load the data 
+
+insert into articles 
+select
+	i,
+    left(md5(i::text), 10),
+    md5(random()::text),
+    left(md5(random()::text), 4)
+from generate_series(1, 1000000000) s(i);
